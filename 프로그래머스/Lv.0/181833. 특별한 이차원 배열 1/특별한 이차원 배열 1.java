@@ -3,7 +3,10 @@ class Solution {
         int[][] answer = new int[n][n];
         for(int i=0; i<n; i++){
             for(int j=0; j<n; j++){
-                answer[i][j] = (i==j)?1:0;
+                //answer[i][j] = (i==j)?1:0;
+                if(i==j){
+                    answer[i][j] = 1;
+                }
             }
         }
         return answer;
