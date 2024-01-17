@@ -1,5 +1,3 @@
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Arrays;
 class Solution {
     public String[] solution(String[] str_list) {
@@ -13,11 +11,8 @@ class Solution {
                 String[] answer = Arrays.copyOfRange(str_list, i+1, str_list.length);
                 res = answer;
                 break;
-            }else{
-                
             }
-        }
-        
+        }        
         return res;
     }
 }
