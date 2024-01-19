@@ -16,21 +16,20 @@ class Solution {
         }
         int maxScore = Math.max(scores[0], Math.max(scores[1], scores[2]));
         
-        for(int i=0; i<scores.length; i++){
-            if(maxScore == scores[i]){
-                list.add(i+1);
-            }
-        }
         int[] answer = {};
-        if(list.isEmpty()){
-            answer = new int[list.size()];
-        }else{
+        if(maxScore>0){
+            for(int i=0; i<scores.length; i++){
+                if(maxScore == scores[i]){
+                    list.add(i+1);
+                }
+            }
             answer = new int[list.size()];
             for(int i=0; i<list.size(); i++){
                 answer[i] = list.get(i);
             }
             Arrays.sort(answer);
         }
+    
         return answer;
     }
 }
