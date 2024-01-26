@@ -4,15 +4,15 @@ import java.util.*;
 public class Main{
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         
-        int a = Integer.parseInt(st.nextToken());
-        int b = Integer.parseInt(st.nextToken());
-        
-        bw.write(String.valueOf((a+b)*(a-b)));
-        bw.flush();
-        br.close();
-        bw.close();
+        long a = Long.parseLong(st.nextToken());
+        long b = Long.parseLong(st.nextToken());
+        long res = f(a, b);
+        System.out.print(res);
+    }
+    
+    public static long f(long a, long b){
+        return (a+b)*(a-b);
     }
 }
