@@ -4,33 +4,26 @@ import java.util.*;
 public class Main{
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
+        String[] nArr = br.readLine().split("");
         int[] arr = new int[10];
-        String[] n = br.readLine().split("");
-
-        for(int i=0; i<n.length; i++){
-            int num = Integer.parseInt(n[i]);
-            if(num == 9){
-                arr[6]++;
+        
+        for(int i=0; i<nArr.length; i++){
+            if(nArr[i].equals("6")){
+                arr[9]++;
             }else{
-                arr[num]++;
+                arr[Integer.parseInt(nArr[i])]++;
             }
         }
-        if(arr[6]%2!=0){
-            arr[6] = arr[6]/2 + 1;
+        if(arr[9]%2!=0){ //99999 -> 3세트 필요
+            arr[9] = arr[9]/2+1;
         }else{
-            arr[6] /=2;
+            arr[9]/=2;
         }
-
-        int max = 0;
+        int answer = 0;
         for(int i=0; i<arr.length; i++){
-            max = Math.max(max, arr[i]);
+            answer = Math.max(answer, arr[i]);
         }
-        bw.write(String.valueOf(max));
-        
-        bw.flush();
         br.close();
-        bw.close();
+        System.out.println(answer);
     }
-}
+ }
