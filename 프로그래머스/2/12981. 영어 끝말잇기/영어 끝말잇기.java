@@ -2,8 +2,6 @@ import java.util.*;
 class Solution {
     public int[] solution(int n, String[] words) {
         int[] answer = new int[2];
-        int p = 0;
-        int count = 0;
         Set<String> set = new HashSet<>();
         
         for(int i=0; i<words.length; i++){
@@ -25,7 +23,6 @@ class Solution {
                 }
             }
         }
-        
         return answer;
     }
 }
