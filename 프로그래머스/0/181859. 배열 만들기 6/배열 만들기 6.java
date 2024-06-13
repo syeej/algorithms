@@ -1,5 +1,4 @@
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 class Solution {
     public int[] solution(int[] arr) {
         List<Integer> stk = new ArrayList<>();
@@ -18,17 +17,11 @@ class Solution {
                 }
             }
         }
-        
-        int[] answer;
+
         if(stk.isEmpty()){
-            answer = new int[]{-1};
+            return new int[]{-1};
         }else{
-            answer = new int[stk.size()];
-            for(int j=0; j<stk.size(); j++){
-                answer[j] = stk.get(j);
-            }
+            return stk.stream().mapToInt(x->x).toArray();
         }
-        
-        return answer;
     }
 }
