@@ -1,14 +1,14 @@
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
 class Solution {
     public int solution(String[] strArr) {
-        Integer[] wordLen = new Integer[30]; //Collections.reverseOrder() int 사용 불가
-        Arrays.fill(wordLen, 0); //배열을 0으로 초기화
-        for(String str: strArr){
-            wordLen[str.length()-1]++;
+        int answer = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        for(String s: strArr){
+            map.put(s.length(), map.getOrDefault(s.length(), 0)+1);
         }
-        Arrays.sort(wordLen, Collections.reverseOrder());
-        int answer = wordLen[0];
+        for(int key : map.keySet()){
+            answer = Math.max(answer, map.get(key));
+        }
         return answer;
     }
 }
