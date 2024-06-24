@@ -1,6 +1,6 @@
 # [level 2] 동물 수 구하기 - 59406 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/59406) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/59406?language=mysql) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@ Empty
 
 ### 제출 일자
 
-2024년 1월 4일 12:30:56
+2024년 06월 24일 17:20:36
 
 ### 문제 설명
 
