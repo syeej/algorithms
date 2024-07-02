@@ -1,4 +1,7 @@
 def solution(s):
+    return s.lower().count('p') == s.lower().count('y')
+"""
+def solution(s):
     answer = True
     count = 0
     s = s.upper()
@@ -10,3 +13,4 @@ def solution(s):
     if count != 0:
         answer = False
     return answer
+"""
