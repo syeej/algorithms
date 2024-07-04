@@ -8,17 +8,15 @@ count = 0
 
 #search
 for num in num_list:
-    while True:
-        if q[0] == num: #원하는 값 나오면 pop
-            q.popleft() 
-            break
+    if q[0] == num: #원하는 값 나오면 pop
+        q.popleft()
+    else:
+        idx = q.index(num)
+        if idx <= len(q)//2:
+            q.rotate(-idx)
+            count += idx
         else:
-            if q.index(num) <=len(q)//2:
-                while q[0] != num:
-                    q.append(q.popleft()) #2번 연산
-                    count+=1
-            else:
-                while q[0] != num:
-                    q.appendleft(q.pop()) #3번 연산
-                    count+=1
+            q.rotate(len(q)-idx)
+            count += len(q) - idx
+        q.popleft()
 print(count)
