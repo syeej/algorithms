@@ -25,15 +25,9 @@ for _ in range(n):
 # 탐색
 for i in range(n):
     for j in range(n):
-        if graph[i][j] == 'R' and not visited[i][j]:
-            bfs(i, j, 'R')
-            count += 1
-        elif graph[i][j] == 'B' and not visited[i][j]:
-            bfs(i, j, 'B')
-            count += 1
-        elif graph[i][j] == 'G' and not visited[i][j]:
-            bfs(i, j, 'G')
-            count += 1
+        if not visited[i][j]:
+            bfs(i, j, graph[i][j])
+            count+=1
 result = []
 result.append(count)
 # R->G
