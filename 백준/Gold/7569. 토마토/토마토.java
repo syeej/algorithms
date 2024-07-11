@@ -1,11 +1,12 @@
 import java.io.*;
 import java.util.*;
-class Point{
+import java.lang.*;
+class Pos{
     int x;
     int y;
     int z;
-    Point(int x, int y, int z){
-        this.x  = x;
+    Pos(int x, int y, int z){
+        this.x = x;
         this.y = y;
         this.z = z;
     }
@@ -13,7 +14,7 @@ class Point{
 public class Main {
     static int m, n, h, day;
     static int[][][] graph;
-    static Queue<Point> q = new LinkedList<>();
+    static Queue<Pos> q = new LinkedList<>();
 
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -34,14 +35,14 @@ public class Main {
             for(int j=0; j<n; j++){
                 for(int k=0; k<m; k++){
                     if(graph[i][j][k]==1){
-                        q.offer(new Point(k, j, i));
+                        q.offer(new Pos(k, j, i));
                     }
                 }
             }
         }
         bfs();
         br.close();
-        if(check()){
+        if(isGood()){
             System.out.println(day);
         }else{
             System.out.println(-1);
@@ -52,9 +53,9 @@ public class Main {
         int[] dx = {1, 0, -1, 0, 0, 0};
         int[] dy = {0, 1, 0, -1, 0, 0};
         int[] dz = {0, 0, 0, 0, 1, -1};
-
+    
         while(!q.isEmpty()){
-            Point cur = q.poll(); //현 좌표
+            Pos cur = q.poll(); //현 좌표
             for(int i=0; i<6; i++){ //인접한 방향 탐색
                 int nx = cur.x +dx[i];
                 int ny = cur.y +dy[i];
@@ -68,12 +69,12 @@ public class Main {
                 if(graph[nz][ny][nx]==0){
                     day = graph[cur.z][cur.y][cur.x];
                     graph[nz][ny][nx] = graph[cur.z][cur.y][cur.x]+1;
-                    q.offer(new Point(nx, ny, nz));
+                    q.offer(new Pos(nx, ny, nz));
                 }
             }
         }
     }
-    public static boolean check(){
+    public static boolean isGood(){
         for(int i=0; i<h; i++){
             for(int j=0; j<n; j++){
                 for(int k=0; k<m; k++){
