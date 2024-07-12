@@ -1,68 +1,71 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
-class Point{
+class Pos{
     int x;
     int y;
-
-    Point(int x, int y){
+    Pos(int x, int y){
         this.x = x;
         this.y = y;
     }
 }
-public class Main {
-    static int l, desx, desy;
-    static int[][] chess;
+class Main {
+    static int[] dx = {-2, -1, 1, 2, 2, 1, -1, -2};
+    static int[] dy = {1, 2, 2, 1, -1, -2, -2, -1};
+    static int i;
+    static int desx, desy; //목적지 좌표
+    static int[][] graph;
     static boolean[][] visited;
-
-    static int[] dx = {-1, -2, -2, -1, 1, 2, 2, 1};
-    static int[] dy = {-2, -1, 1, 2, 2, 1, -1, -2};
-
+    
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int t = Integer.parseInt(br.readLine());
-        StringTokenizer st;
         StringBuilder sb = new StringBuilder();
+        StringTokenizer st;
+        int t = Integer.parseInt(br.readLine());
         while(t>0){
-            l = Integer.parseInt(br.readLine());
-            chess = new int[l][l];
-            visited = new boolean[l][l];
+            i = Integer.parseInt(br.readLine());
+            graph = new int[i][i];
+            visited = new boolean[i][i];
             st = new StringTokenizer(br.readLine());
-            int curx = Integer.parseInt(st.nextToken());
-            int cury = Integer.parseInt(st.nextToken());
+            int cx = Integer.parseInt(st.nextToken());
+            int cy = Integer.parseInt(st.nextToken());
             st = new StringTokenizer(br.readLine());
             desx = Integer.parseInt(st.nextToken());
             desy = Integer.parseInt(st.nextToken());
-            sb.append(bfs(curx, cury)).append("\n");
+            //출발지 = 목적지인 경우
+            if((cx==desx) && (cy==desy)){
+                sb.append(0).append("\n");
+            }else{
+                sb.append(bfs(cx, cy)).append("\n");
+            }
             t--;
         }
-        System.out.println(sb);
         br.close();
+        System.out.print(sb.toString());
     }
-
-    static int bfs(int x, int y){
-        Queue<Point> q = new LinkedList<>();
-        q.offer(new Point(x, y));
-        chess[x][y]++;
-        visited[x][y] = true;
-        int result = 0;
+    static int bfs(int cx, int cy){
+        Queue<Pos> q = new LinkedList<>();
+        q.offer(new Pos(cx, cy));
+        graph[cx][cy]++;
+        visited[cx][cy] = true;
 
         while(!q.isEmpty()){
-            Point cur = q.poll();
-            for(int i=0; i<dx.length; i++){
-                int nx = cur.x + dx[i];
-                int ny = cur.y + dy[i];
-
-                //chess 범위 밖이거나 방문한 곳이면 skip
-                if(nx<0 ||nx>=l ||ny<0 ||ny>=l || visited[nx][ny]) continue;
+            Pos cur = q.poll();
+            for(int idx=0; idx<8; idx++){
+                int nx = cur.x + dx[idx];
+                int ny = cur.y + dy[idx];
+                //인접 좌표가 목표 좌표와 같을 경우 탐색 중단
                 if(nx==desx && ny==desy){
-                    return chess[cur.x][cur.y];
+                    return graph[cur.x][cur.y];
                 }
-                q.offer(new Point(nx, ny));
-                chess[nx][ny] = chess[cur.x][cur.y]+1;
-                visited[nx][ny] = true;
+                //인접 좌표가 범위 안에 있고, 방문한 적 없는 경우
+                if(nx>=0 && nx<i && ny>=0 && ny<i && !visited[nx][ny]){
+                    q.offer(new Pos(nx, ny));
+                    graph[nx][ny] = graph[cur.x][cur.y]+1;
+                    visited[nx][ny] = true;
+                }
             }
         }
-        return result;
+        return 0;
     }
 }
