@@ -8,7 +8,7 @@ def solution(lottos, win_nums):
                 cnt+=1
     #최고로 잘 맞은 경우 = 0의 개수 + cnt           
     cntPlus = lottos.count(0) + cnt 
-    if cntPlus>0:
+    if cntPlus>0 :
         answer.append(7-cntPlus) #최고 순위
     else:
         answer.append(6)
