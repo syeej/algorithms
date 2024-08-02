@@ -1,5 +1,5 @@
 import sys
-intput = sys.stdin.readline
+input = sys.stdin.readline
 n = int(input())
 meetings = []
 for i in range(n):
