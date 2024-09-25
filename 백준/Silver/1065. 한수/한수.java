@@ -5,25 +5,25 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt(); //1<=n<=1000 자연수
+        System.out.println(arithmetic_sequence(n));
+    }
+    static int arithmetic_sequence(int num){
         int answer = 0;
-        for(int i=1; i<=n; i++){
-            if(isHansu(i)) {
-                answer++;
+        if(num<100){ //99이하는 무조건 등차수열
+            answer = num;
+        }else{//100이상일 때
+            answer = 99;
+            for(int i=100; i<=num; i++){
+                int n2 = i/100;
+                int n1 = (i/10)%10;
+                int n = i%10;
+
+                if((n2-n1) == (n1-n)){
+                    answer++;
+                }
             }
         }
-        System.out.println(answer);
+        return answer;
     }
-    static boolean isHansu(int x){
-        List<Integer> list = new ArrayList<>();
-        while(x>0){
-            list.add(x%10);
-            x /= 10;
-        }
-        for(int i=0; i<list.size()-2; i++){
-            int dif1 = list.get(i)-list.get(i+1);
-            int dif2 = list.get(i+1)-list.get(i+2);
-            if(dif1!=dif2) return false;
-        }
-        return true;
-    }
+
 }
