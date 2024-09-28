@@ -8,8 +8,8 @@ class Solution {
         int answer = 0;
         for (int i = 0; i < computers.length; i++){
             if (!visited[i]){
-                answer++;   
-                dfs(i, computers);    
+                dfs(i, computers); 
+                answer++;
             }   
         }
         return answer;
