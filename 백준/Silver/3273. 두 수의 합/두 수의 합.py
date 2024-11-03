@@ -2,7 +2,7 @@ import sys
 
 n=int(sys.stdin.readline())
 arr = list(map(int, sys.stdin.readline().split()))
-x = int(sys.stdin.readline())
+x = int(input())
 arr.sort()
 answer=0
 left, right = 0, n-1
